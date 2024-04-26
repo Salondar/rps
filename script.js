@@ -28,7 +28,7 @@ function playGame() {
     let computerScore = 0;
     let ROUNDS = 5;
 
-    for (let counter = 0; counter < 5; counter++) {
+    for (let counter = 0; counter < ROUNDS; counter++) {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         playRound(humanSelection, computerSelection);
