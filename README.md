@@ -1,1 +1,1 @@
-# rps
+A console Javascript implementation of rock paper scissors
