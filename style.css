@@ -1,0 +1,38 @@
+body {
+    width: 400px;;
+    height: 600px;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3, p, h1{
+    text-align: center;
+    color: #016064;
+}
+
+#rock, 
+#paper,
+#scissors
+{
+    background-color: #016064;
+    color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+}
+
+.restart-container {
+    display: flex;
+    justify-content: center;
+}
