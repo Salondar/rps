@@ -1,3 +1,13 @@
+const playerScore = document.querySelector('.player-score');
+const computerScore = document.querySelector('.computer-score');
+const buttons = document.querySelector('.buttons');
+const header = document.querySelector('h3');
+const reset = document.querySelector('.reset-container');
+let player_score = 0;
+let computer_score = 0;
+let resetButton;
+
+
 function getComputerChoice() {
     const ROCK = 0;
     const PAPER = 1;
@@ -15,71 +25,101 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt(`Type rock paper or scissors: `);
-    humanChoice = humanChoice.toLowerCase();
+function playGame(playerChoice) {
+    computerChoice = getComputerChoice();
 
-    return humanChoice;
-}
-
-
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    let ROUNDS = 5;
-
-    for (let counter = 0; counter < ROUNDS; counter++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
+    if (playerChoice === computerChoice) {
+        header.textContent = "Tie!";
     }
+    else if (playerChoice === `rock`) {
+        if (computerChoice === `paper`) {
+            header.textContent = `You lost! ${computerChoice} beats ${playerChoice}`;
+            header.style.color = 'red';
+            computer_score++;
+        }
+        else {
+            header.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+            header.style.color = '#016064';
+            player_score++;
+        }
+    }
+    else if (playerChoice === 'paper') {
+        if (computerChoice === 'scissors') {
+            header.textContent = `You lost! ${computerChoice} beats ${playerChoice}`;
+            header.style.color = 'red';
+            computer_score++;
+        }
+        else {
+            header.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+            header.style.color = '#016064';
+            player_score++;
+        }
+    }
+    else if (playerChoice === 'scissors') {
+        if (computerChoice === 'rock') {
+            header.textContent = `You lost! ${computerChoice} beats ${playerChoice}`;
+            header.style.color = 'red';
+            computer_score++;
+        }
+        else {
+            header.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+            header.style.color = '#016064';
+            player_score++;
+        }
+    }
+    playerScore.textContent = `Player: ${player_score}`;
+    computerScore.textContent = `Computer: ${computer_score}`;
 
-    console.log(`\n\nFINAL SCORE`)
-    if (humanScore === computerScore) {
-        console.log(`You: ${humanScore} Computer: ${computerScore}`)
+    if (player_score === 5) {
+        header.textContent = "You Won!"
+        setGameOver();
     }
-    else if (humanScore > computerScore) {
-        console.log(`You: ${humanScore} Computer: ${computerScore}`);
-    }
-    else {
-        console.log(`Computer: ${computerScore} You: ${humanScore}`);
-    }
-
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-            console.log(`Tie!`);
-        }
-        else if (humanChoice === `rock`) {
-            if (computerChoice === `paper`) {
-                console.log(`You lost! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;
-            }
-            else {
-                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-        }
-        else if (humanChoice === `paper`) {
-            if (computerChoice === `scissors`) {
-                console.log(`You lost! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;
-            }
-            else {
-                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-        }
-        else if (humanChoice === `scissors`) {
-            if (computerChoice === `rock`) {
-                console.log(`You lost! ${computerChoice} beats ${humanChoice}`);
-                computerScore++;   
-            }
-            else {
-                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                humanScore++;
-            }
-        }
+    else if (computer_score === 5) {
+        header.textContent  = "You Lost!";
+        setGameOver();
     }
 }
 
-playGame();
+buttons.addEventListener("click", (event)=> {
+    let target = event.target
+    switch(target.id) {
+        case 'rock':
+            playGame('rock');
+            break;
+        case 'paper':
+            playGame('paper');
+            break;
+        case 'scissors':
+            playGame('scissors');
+            break;
+    }
+});
+
+function setGameOver() {
+    resetButton = document.createElement('button');
+    reset.appendChild(resetButton);
+
+    reset.style.display = "flex";
+    reset.style.justifyContent = "center";
+    resetButton.textContent = "Restart Game";
+    resetButton.style.height = "30px";
+    resetButton.style.width = "120px";
+    resetButton.style.marginTop = "15px";
+    resetButton.style.backgroundColor = "#016064";
+    resetButton.style.color = "white";
+    resetButton.style.border = "none";
+    resetButton.style.borderRadius = "12px";
+
+    resetButton.addEventListener("click", resetGame);
+}
+
+function resetGame() {
+    player_score = 0;
+    computer_score = 0;
+
+    playerScore.textContent = `Player: ${player_score}`;
+    computerScore.textContent = `Computer: ${computer_score}`;
+    header.style.color = "#016064";
+    header.textContent = "Click One To Play";
+    reset.removeChild(resetButton);
+}
