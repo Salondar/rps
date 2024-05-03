@@ -86,7 +86,7 @@ buttons.addEventListener("mouseover", event => {
         case 'rock':
         case 'paper':
         case 'scissors':
-            target.style.border = "2px solid black";
+            target.focus();
             break;
     }
 });
@@ -97,7 +97,7 @@ buttons.addEventListener("mouseout", event => {
         case 'rock':
         case 'paper':
         case 'scissors':
-            target.style.border = "none";
+            target.blur();
             break;
     }
 });
@@ -127,8 +127,17 @@ function setGameOver() {
     resetButton.style.color = "white";
     resetButton.style.border = "none";
     resetButton.style.borderRadius = "12px";
-
+    
     reset.appendChild(resetButton);
+
+    resetButton.addEventListener("mouseover", () => {
+        resetButton.focus();
+    });
+
+    resetButton.addEventListener("mouseout", () => {
+        resetButton.blur();
+    });
+
     resetButton.addEventListener("click", resetGame);
 }
 
