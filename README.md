@@ -1,1 +1,1 @@
-A console Javascript implementation of rock paper scissors
+Rock Paper Scissors Webapp in Javascript
