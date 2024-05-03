@@ -97,10 +97,6 @@ buttons.addEventListener("click", (event)=> {
 
 function setGameOver() {
     resetButton = document.createElement('button');
-    reset.appendChild(resetButton);
-
-    reset.style.display = "flex";
-    reset.style.justifyContent = "center";
     resetButton.textContent = "Restart Game";
     resetButton.style.height = "30px";
     resetButton.style.width = "120px";
@@ -110,6 +106,7 @@ function setGameOver() {
     resetButton.style.border = "none";
     resetButton.style.borderRadius = "12px";
 
+    reset.appendChild(resetButton);
     resetButton.addEventListener("click", resetGame);
 }
 
