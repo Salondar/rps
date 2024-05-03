@@ -30,6 +30,7 @@ function playGame(playerChoice) {
 
     if (playerChoice === computerChoice) {
         header.textContent = "Tie!";
+        header.style.color = "#2C3E4C";
     }
     else if (playerChoice === `rock`) {
         if (computerChoice === `paper`) {
