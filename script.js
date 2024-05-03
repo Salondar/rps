@@ -80,6 +80,28 @@ function playGame(playerChoice) {
     }
 }
 
+buttons.addEventListener("mouseover", event => {
+    const target = event.target;
+    switch(target.id) {
+        case 'rock':
+        case 'paper':
+        case 'scissors':
+            target.style.border = "2px solid black";
+            break;
+    }
+});
+
+buttons.addEventListener("mouseout", event => {
+    const target = event.target;
+    switch(target.id) {
+        case 'rock':
+        case 'paper':
+        case 'scissors':
+            target.style.border = "none";
+            break;
+    }
+});
+
 buttons.addEventListener("click", (event)=> {
     let target = event.target
     switch(target.id) {
@@ -113,7 +135,6 @@ function setGameOver() {
 function resetGame() {
     player_score = 0;
     computer_score = 0;
-
     playerScore.textContent = `Player: ${player_score}`;
     computerScore.textContent = `Computer: ${computer_score}`;
     header.style.color = "#016064";
