@@ -32,7 +32,7 @@ h3, p, h1{
     border: none;
 }
 
-.restart-container {
+.reset-container {
     display: flex;
     justify-content: center;
 }
